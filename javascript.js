@@ -42,35 +42,38 @@ function playRound(playerSelection, computerSelection) {
     else
         formattedPlayerSelection = formatSelection(playerSelection);
     if (computerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}`;
+        return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}.`;
     else if (playerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}`;
+        return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}.`;
     else
-        return "It's a draw!";
+        return `It's a draw. ${formattedPlayerSelection} vs ${computerSelection}.`;
 }
 
-function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-    let errors = 0;
-    let ret, errString;
-    for(let i=0; i<5; i++) {
-        ret = playRound(prompt(`Round ${i+1}`), getComputerChoice());
-        if (ret.includes("win"))
-            playerWins++;
-        else if (ret.includes("lose"))
-            computerWins++;
-        else if (ret.includes("not valid"))
-            errors++;
-    }
-    if (errors > 0)
-        errString = ` You entered invalid values ${errors} times`;
-    else
-        errString = '';
-    if (playerWins > computerWins)
-        console.log(`You win the game ${playerWins}-${computerWins}!${errString}`);
-    else if (playerWins < computerWins)
-        console.log(`You lose the game ${playerWins}-${computerWins}!${errString}`);
-    else
-        console.log("It's a draw!");
-}
+const buttons = document.querySelectorAll('button');
+const roundResult = document.querySelector('#roundResult');
+const score = document.querySelector('#score');
+const gameResult = document.querySelector('#gameResult');
+let wins = 0;
+let defeats = 0;
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let result = playRound(button.id, getComputerChoice());
+        if (result.includes("win"))
+            wins++;
+        else if (result.includes("lose"))
+            defeats++;
+        gameResult.textContent = "";
+        roundResult.textContent = result;
+        score.textContent = `Score: ${wins}-${defeats}`;
+        if (wins == 5 || defeats == 5) {
+            if (wins > defeats)
+                gameResult.textContent = `You win the game!`;
+            else if (wins < defeats)
+                gameResult.textContent = `You lose the game!`;
+            else
+                gameResult.textContent = `The game ends in a draw.`;
+            wins = 0;
+            defeats = 0;
+        }
+    });
+});
