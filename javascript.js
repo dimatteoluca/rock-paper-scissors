@@ -42,45 +42,36 @@ function playRound(playerSelection, computerSelection) {
     else
         formattedPlayerSelection = formatSelection(playerSelection);
     if (computerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}`;
+        return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}.`;
     else if (playerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}`;
+        return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}.`;
     else
-        return "It's a draw!";
+        return "It's a draw.";
 }
-
-// function game() {
-//     let playerWins = 0;
-//     let computerWins = 0;
-//     let errors = 0;
-//     let ret, errString;
-//     for(let i=0; i<5; i++) {
-//         ret = playRound(prompt(`Round ${i+1}`), getComputerChoice());
-//         if (ret.includes("win"))
-//             playerWins++;
-//         else if (ret.includes("lose"))
-//             computerWins++;
-//         else if (ret.includes("not valid"))
-//             errors++;
-//     }
-//     if (errors > 0)
-//         errString = ` You entered invalid values ${errors} times`;
-//     else
-//         errString = '';
-//     if (playerWins > computerWins)
-//         console.log(`You win the game ${playerWins}-${computerWins}!${errString}`);
-//     else if (playerWins < computerWins)
-//         console.log(`You lose the game ${playerWins}-${computerWins}!${errString}`);
-//     else
-//         console.log("It's a draw!");
-// }
 
 const buttons = document.querySelectorAll('button');
 const resultDiv = document.querySelector('#resultDiv');
-let res;
+let wins = 0;
+let defeats = 0;
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        res = playRound(button.id, getComputerChoice());
-        resultDiv.textContent = res;
+        let result = playRound(button.id, getComputerChoice());
+        if (result.includes("win"))
+            wins++;
+        else if (result.includes("lose"))
+            defeats++;
+        if (wins == 5 || defeats == 5) {
+            if (wins > defeats)
+                resultDiv.textContent = result + ` You win the game: ${wins}-${defeats}!`;
+            else if (wins < defeats)
+                resultDiv.textContent = result + ` You lose the game: ${wins}-${defeats}!`;
+            else
+                resultDiv.textContent = result + ` The game ends in a draw: ${wins}-${defeats}.`;
+            wins = 0;
+            defeats = 0;
+        }
+        else {
+            resultDiv.textContent = result + ` Score: ${wins}-${defeats}`;
+        }
     });
 });
