@@ -42,9 +42,35 @@ function playRound(playerSelection, computerSelection) {
     else
         formattedPlayerSelection = formatSelection(playerSelection);
     if (computerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You lose! ${computerSelection} beats ${formattedPlayerSelection}`;
+        return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}`;
     else if (playerIsWinner(formattedPlayerSelection, computerSelection))
-        return `You win! ${formattedPlayerSelection} beats ${computerSelection}`;
+        return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}`;
     else
         return "It's a draw!";
+}
+
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+    let errors = 0;
+    let ret, errString;
+    for(let i=0; i<5; i++) {
+        ret = playRound(prompt(`Round ${i+1}`), getComputerChoice());
+        if (ret.includes("win"))
+            playerWins++;
+        else if (ret.includes("lose"))
+            computerWins++;
+        else if (ret.includes("not valid"))
+            errors++;
+    }
+    if (errors > 0)
+        errString = ` You entered invalid values ${errors} times`;
+    else
+        errString = '';
+    if (playerWins > computerWins)
+        console.log(`You win the game ${playerWins}-${computerWins}!${errString}`);
+    else if (playerWins < computerWins)
+        console.log(`You lose the game ${playerWins}-${computerWins}!${errString}`);
+    else
+        console.log("It's a draw!");
 }
