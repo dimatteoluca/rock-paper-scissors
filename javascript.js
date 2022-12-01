@@ -46,11 +46,13 @@ function playRound(playerSelection, computerSelection) {
     else if (playerIsWinner(formattedPlayerSelection, computerSelection))
         return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}.`;
     else
-        return "It's a draw.";
+        return `It's a draw. ${formattedPlayerSelection} vs ${computerSelection}.`;
 }
 
 const buttons = document.querySelectorAll('button');
-const resultDiv = document.querySelector('#resultDiv');
+const roundResult = document.querySelector('#roundResult');
+const score = document.querySelector('#score');
+const gameResult = document.querySelector('#gameResult');
 let wins = 0;
 let defeats = 0;
 buttons.forEach((button) => {
@@ -60,18 +62,18 @@ buttons.forEach((button) => {
             wins++;
         else if (result.includes("lose"))
             defeats++;
+        gameResult.textContent = "";
+        roundResult.textContent = result;
+        score.textContent = `Score: ${wins}-${defeats}`;
         if (wins == 5 || defeats == 5) {
             if (wins > defeats)
-                resultDiv.textContent = result + ` You win the game: ${wins}-${defeats}!`;
+                gameResult.textContent = `You win the game!`;
             else if (wins < defeats)
-                resultDiv.textContent = result + ` You lose the game: ${wins}-${defeats}!`;
+                gameResult.textContent = `You lose the game!`;
             else
-                resultDiv.textContent = result + ` The game ends in a draw: ${wins}-${defeats}.`;
+                gameResult.textContent = `The game ends in a draw.`;
             wins = 0;
             defeats = 0;
-        }
-        else {
-            resultDiv.textContent = result + ` Score: ${wins}-${defeats}`;
         }
     });
 });

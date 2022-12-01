@@ -1,0 +1,42 @@
+body {
+    background-color: antiquewhite;
+    padding-top: 10vh;
+}
+
+button {
+    font-size: 18px;
+}
+
+.margin {
+    margin: 40px 20px;
+}
+
+.padding {
+    padding: 20px;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-evenly {
+    justify-content: space-evenly;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+.round-border {
+    border-radius: 16px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.big-text {
+    font-size: 40px;
+}
