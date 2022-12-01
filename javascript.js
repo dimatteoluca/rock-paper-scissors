@@ -49,28 +49,35 @@ function playRound(playerSelection, computerSelection) {
         return "It's a draw!";
 }
 
-function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-    let errors = 0;
-    let ret, errString;
-    for(let i=0; i<5; i++) {
-        ret = playRound(prompt(`Round ${i+1}`), getComputerChoice());
-        if (ret.includes("win"))
-            playerWins++;
-        else if (ret.includes("lose"))
-            computerWins++;
-        else if (ret.includes("not valid"))
-            errors++;
-    }
-    if (errors > 0)
-        errString = ` You entered invalid values ${errors} times`;
-    else
-        errString = '';
-    if (playerWins > computerWins)
-        console.log(`You win the game ${playerWins}-${computerWins}!${errString}`);
-    else if (playerWins < computerWins)
-        console.log(`You lose the game ${playerWins}-${computerWins}!${errString}`);
-    else
-        console.log("It's a draw!");
-}
+// function game() {
+//     let playerWins = 0;
+//     let computerWins = 0;
+//     let errors = 0;
+//     let ret, errString;
+//     for(let i=0; i<5; i++) {
+//         ret = playRound(prompt(`Round ${i+1}`), getComputerChoice());
+//         if (ret.includes("win"))
+//             playerWins++;
+//         else if (ret.includes("lose"))
+//             computerWins++;
+//         else if (ret.includes("not valid"))
+//             errors++;
+//     }
+//     if (errors > 0)
+//         errString = ` You entered invalid values ${errors} times`;
+//     else
+//         errString = '';
+//     if (playerWins > computerWins)
+//         console.log(`You win the game ${playerWins}-${computerWins}!${errString}`);
+//     else if (playerWins < computerWins)
+//         console.log(`You lose the game ${playerWins}-${computerWins}!${errString}`);
+//     else
+//         console.log("It's a draw!");
+// }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(playRound(button.id, getComputerChoice()));
+    });
+});
