@@ -1,24 +1,43 @@
 body {
-    background-color: antiquewhite;
+    color: white;
+    background-color: rgb(30 30 30);
     padding-top: 10vh;
+    font-family: sans-serif;
 }
 
 button {
-    font-size: 18px;
+    /* width: 28vw;
+    max-width: 16vmax; */
+    margin: 5vh 2px;
+}
+
+.responsive {
+    min-width: 90vmin;
+    max-width: 50vmax;
 }
 
 .margin {
     margin: 40px 20px;
 }
 
+.logo {
+    width: 40vh;
+    align-self: center;
+    margin-bottom: 4vh;
+}
+
 .padding {
-    padding: 20px;
+    padding: 25px 15px;
 }
 
 .flexbox {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
 }
 
 .flex-evenly {
@@ -37,6 +56,23 @@ button {
     text-align: center;
 }
 
+.large-font {
+    font-size: large;
+}
+
+.larger-font {
+    font-size: larger;
+}
+
 .big-text {
-    font-size: 40px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.red-text {
+    color: rgb(255 64 87);
+}
+
+.green-text {
+    color: greenyellow;
 }

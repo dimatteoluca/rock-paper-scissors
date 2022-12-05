@@ -1,3 +1,7 @@
+const ROCK = "Rock 🪨";
+const PAPER = "Paper 📄";
+const SCISSORS = "Scissors ✂️";
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);   // 0, 1 or 2
     if (randomNumber == 0)
@@ -41,12 +45,18 @@ function playRound(playerSelection, computerSelection) {
         return `The value '${playerSelection}' is not valid!`;
     else
         formattedPlayerSelection = formatSelection(playerSelection);
-    if (computerIsWinner(formattedPlayerSelection, computerSelection))
+    if (computerIsWinner(formattedPlayerSelection, computerSelection)) {
+        roundResult.style.color = "rgb(255 64 87)";
         return `You lose this round! ${computerSelection} beats ${formattedPlayerSelection}.`;
-    else if (playerIsWinner(formattedPlayerSelection, computerSelection))
+    }
+    else if (playerIsWinner(formattedPlayerSelection, computerSelection)) {
+        roundResult.style.color = "greenyellow";
         return `You win this round! ${formattedPlayerSelection} beats ${computerSelection}.`;
-    else
+    }
+    else {
+        roundResult.style.color = "white";
         return `It's a draw. ${formattedPlayerSelection} vs ${computerSelection}.`;
+    }
 }
 
 const buttons = document.querySelectorAll('button');
@@ -64,14 +74,16 @@ buttons.forEach((button) => {
             defeats++;
         gameResult.textContent = "";
         roundResult.textContent = result;
-        score.textContent = `Score: ${wins}-${defeats}`;
+        score.textContent = `SCORE: ${wins}-${defeats}`;
         if (wins == 5 || defeats == 5) {
-            if (wins > defeats)
+            if (wins > defeats) {
+                gameResult.style.color = "greenyellow";
                 gameResult.textContent = `You win the game!`;
-            else if (wins < defeats)
+            }
+            else {
+                gameResult.style.color = "rgb(255 64 87)";
                 gameResult.textContent = `You lose the game!`;
-            else
-                gameResult.textContent = `The game ends in a draw.`;
+            }
             wins = 0;
             defeats = 0;
         }
