@@ -2,6 +2,14 @@ const ROCK = "Rock 🪨";
 const PAPER = "Paper 📄";
 const SCISSORS = "Scissors ✂️";
 
+function isMobileDevice() {
+    if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) ||
+    (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform)))
+        return true;
+    else
+        return false;
+}
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);   // 0, 1 or 2
     if (randomNumber == 0)
@@ -63,6 +71,11 @@ const buttons = document.querySelectorAll('button');
 const roundResult = document.querySelector('#roundResult');
 const score = document.querySelector('#score');
 const gameResult = document.querySelector('#gameResult');
+console.log(navigator.userAgent);
+console.log(navigator.platform);
+if (isMobileDevice()) {
+    buttons.forEach(button => button.style['font-size'] = '15px');
+}
 let wins = 0;
 let defeats = 0;
 buttons.forEach((button) => {
