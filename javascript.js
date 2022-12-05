@@ -79,10 +79,13 @@ const buttons = document.querySelectorAll('button');
 const roundResult = document.querySelector('#roundResult');
 const score = document.querySelector('#score');
 const gameResult = document.querySelector('#gameResult');
+const icons = document.querySelectorAll('.icon');
 console.log(navigator.userAgent);
 console.log(navigator.platform);
 if (isMobileDevice()) {
     buttons.forEach(button => button.style['font-size'] = '15px');
+    icons.forEach(icon => icon.style.width = '48px');
+    document.querySelector('body').style['padding-top'] = '13vh';
 }
 let wins = 0;
 let defeats = 0;

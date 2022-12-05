@@ -15,6 +15,11 @@ button {
     border-radius: 16px;
 }
 
+.icon {
+    aspect-ratio: 1/1 !important;
+    width: 96px;
+}
+
 .responsive {
     min-width: 85vmin;
     max-width: 50vmax;
