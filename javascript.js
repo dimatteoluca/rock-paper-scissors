@@ -1,6 +1,10 @@
 const ROCK = "Rock 🪨";
 const PAPER = "Paper 📄";
 const SCISSORS = "Scissors ✂️";
+const WIN_COLOR = "greenyellow";
+const LOSE_COLOR = "rgb(255 64 87)";
+const DRAW_COLOR = "gold";
+const DEFAULT_COLOR = "";
 
 function isMobileDevice() {
     if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) ||
@@ -67,6 +71,10 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function resetButtonsBackgroundColor() {
+    buttons.forEach(button => button.style['background-color'] = DEFAULT_COLOR);
+}
+
 const buttons = document.querySelectorAll('button');
 const roundResult = document.querySelector('#roundResult');
 const score = document.querySelector('#score');
@@ -80,21 +88,29 @@ let wins = 0;
 let defeats = 0;
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
+        resetButtonsBackgroundColor();
         let result = playRound(button.id, getComputerChoice());
-        if (result.includes("win"))
+        if (result.includes("win")) {
             wins++;
-        else if (result.includes("lose"))
+            button.style['background-color'] = WIN_COLOR;
+        }
+        else if (result.includes("lose")) {
             defeats++;
+            button.style['background-color'] = LOSE_COLOR;
+        }
+        else {
+            button.style['background-color'] = DRAW_COLOR;
+        }
         gameResult.textContent = "";
         roundResult.textContent = result;
         score.textContent = `SCORE: ${wins}-${defeats}`;
         if (wins == 5 || defeats == 5) {
             if (wins > defeats) {
-                gameResult.style.color = "greenyellow";
+                gameResult.style.color = WIN_COLOR;
                 gameResult.textContent = `You win the game!`;
             }
             else {
-                gameResult.style.color = "rgb(255 64 87)";
+                gameResult.style.color = LOSE_COLOR;
                 gameResult.textContent = `You lose the game!`;
             }
             wins = 0;
