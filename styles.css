@@ -1,7 +1,9 @@
 body {
     color: white;
     background-color: rgb(30 30 30);
-    padding-top: 10vh;
+    padding-top: 16vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
     font-family: sans-serif;
 }
 
@@ -9,31 +11,28 @@ button {
     /* width: 28vw;
     max-width: 16vmax; */
     margin: 5vh 2px;
+    padding: 25px 5px;
+    border-radius: 16px;
 }
 
 .responsive {
-    min-width: 90vmin;
+    min-width: 85vmin;
     max-width: 50vmax;
-}
-
-.margin {
-    margin: 40px 20px;
+    margin: auto;
+    padding: 0;
 }
 
 .logo {
-    width: 40vh;
+    max-height: 15vh;
+    max-width: 70vw;
     align-self: center;
     margin-bottom: 4vh;
-}
-
-.padding {
-    padding: 25px 15px;
 }
 
 .flexbox {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
 }
 
 .flex-column {
@@ -48,10 +47,6 @@ button {
     flex: 1;
 }
 
-.round-border {
-    border-radius: 16px;
-}
-
 .center-text {
     text-align: center;
 }
@@ -64,15 +59,7 @@ button {
     font-size: larger;
 }
 
-.big-text {
+.xxl-bold-font {
     font-size: xx-large;
     font-weight: bold;
-}
-
-.red-text {
-    color: rgb(255 64 87);
-}
-
-.green-text {
-    color: greenyellow;
 }
